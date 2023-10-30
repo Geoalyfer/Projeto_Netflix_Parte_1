@@ -1,0 +1,69 @@
+Obtenha a base dados que a Netflix disponibiliza para o público.
+Neste caso, vamos utilizar o jupyter notebook pelo terminal vinculado a pasta do projeto no PC.
+Entender o business case para obter a finalidade do projeto. Verificar se a coleta de dados é necessária. Responder as dúvidas.
+A base de dados pode ser encontrada no site da kaggle: https://www.kaggle.com/datasets/shivamb/netflix-shows
+
+Carregamento e tratamento dos dados
+
+import pandas as pd
+import numpy as nd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('netflix.csv')
+df.head()
+df.tail()
+df.info()
+
+Como foi identificado um tipo de dado na coluna date_added como string, é preciso convertê-lo para datetime.
+Então, incluir a seguinte linha no script, que se chama parse_dates
+
+df = pd.read_csv('netflix.csv', parse_dates=['date_added'])
+
+Agora, a coluna foi transformada para o novo tipo de dado datetime64;
+ 6   date_added    8797 non-null   datetime64[ns]
+
+Uma boa prática é copiar o dataframe original, para facilitar futuras alterações. deep copy
+df_tratado = df.copy()
+
+Alterar os nomes das colunas atribuindo uma nova lista:
+df_tratado.columns = ['show_id', 'type', 'title', 'director', 'cast', 'country', 'date_added', 'release_year', 'rating', 'duration', 'listed_in', 'description']
+
+Troque os nomes originais pelos nomes que desejar em portugues, por exemplo:
+df_tratado.columns = ['id', 'tipo', 'titulo', 'diretor', 'elenco', 'pais', 'dt_disponibilizacao',
+       'ano_lancamento', 'classificacao', 'duracao', 'categorias', 'descricao']
+
+1 - Quantos registros e quantas colunas existem no dataset?
+
+​
+2- Existem colunas com valores ausentes? Quais?
+​
+​
+3 - Quantas séries (TV Show) e quantos filmes (Movie) estão disponíveis?
+​
+​
+4 - Quantos registros no dataset estão sem o país especificado? Liste os seus tipos (filme ou série de tv) e quantidades.
+​
+​
+5 - Qual a data do primeiro filme disponibilizado e qual o seu título e país?
+​
+​
+6 - Qual o diretor com maior número de títulos (filme ou série)? Qual o seu país?
+​
+​
+7 - Qual é o filme de maior duração? E o de menor duração?
+​
+​
+8 - Qual o tempo médio de duração de um filme?
+​
+​
+9 - Liste os 3 países que produzem a maior quantidade de Séries (TV Show).
+​
+​
+10 - Em qual ano temos o maior número de séries e filmes brasileiros disponibilizados na Netflix?
+​
+​
+11 - Qual(ais) o(s) diretor(es) brasileiro(s) com o maior número de títulos (filme/série)?
+​
+​
+12 - Existem mais conteúdos para adultos ou para crianças e adolescentes?¶
